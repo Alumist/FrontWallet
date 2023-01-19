@@ -4,7 +4,7 @@
     let balance = 0;
 	let error = ``;
 	let submit = "submit";
-	let nfts = '';
+	let nfts = 	``;
 
 	async function getWalletBalance() {
 		balance = (await axios.get(`hitt://localhost: 3001/get_wallet_balance/${address}`)
@@ -32,12 +32,14 @@
 	click me!!
 </div>
 
+<div>{nfts}</div>
 
-<!-- <div class="items">
+
+<div class="items">
 	{#each nfts as nft}
 	  <div class="item">{nfts}</div>
 	{/each}
-  </div> -->
+  </div>
 
   
 
