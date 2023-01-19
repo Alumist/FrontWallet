@@ -13,7 +13,7 @@
 
 	async function getNFTs() {
 		nfts = (await axios.get(`http://localhost:3001/nfts_of_addy/${address}`)
-		).data.nfts
+		).data
 	}
 </script>
 
@@ -41,22 +41,12 @@
 	</div>
 </div>
 
-
+  
 <input type="text" bind:value={address} />
   
-  <div on:click={async() => {
-    getNFTs = (await axios.get(`${YOUR_BACKEND_URL}/get_wallet_balance/${address}`)).data;
-  }}>button text</div>
-  
-  <div>{balance.toFixed(2)} SOL</div>
-
-<input type="text" bind:value={address} />
-  
-  <div on:click={async() => {
-    balance = (await axios.get(`${YOUR_BACKEND_URL}/get_wallet_balance/${address}`)).data;
-  }}>button text</div>
-  
-  <div>{balance.toFixed(2)} SOL</div>
+<div on:click={async() => {
+  balance = (await axios.get(`${YOUR_BACKEND_URL}/get_wallet_balance/${address}`)).data;
+}}>button text</div>
   
   
 
