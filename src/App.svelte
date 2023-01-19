@@ -19,12 +19,6 @@
 
 
 
-
-<div class="container">
-	<div class="text"> 
-		
-	</div>
-
 <div class="button">
 	<input
 	bind:value={address}
@@ -67,11 +61,5 @@
 		font-weight: bold;
 	}
 </style>
-
-<script lang="ts">
-    const axios = require(`axios`);
-    let  = ``;
-    let balance = 0;
-  </script>
   
   
