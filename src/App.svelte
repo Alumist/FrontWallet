@@ -1,10 +1,10 @@
 <script lang='ts'>
 	import axios from "axios"
 	let address = '';
-	let nfts = '';
     let balance = 0;
 	let error = ``;
 	let submit = "submit";
+	let nfts = '';
 
 	async function getWalletBalance() {
 		balance = (await axios.get(`hitt://localhost: 3001/get_wallet_balance/${address}`)
@@ -13,8 +13,8 @@
 
 	async function getNFTs() {
 		nfts = (await axios.get(`http://localhost:3001/nfts_of_addy/${address}`)
-		).data
-	}
+		).data.nft 
+	} 
 </script>
 
 
@@ -28,11 +28,16 @@
 >
 </div>
 
-<div class="items">
+<div class="button" on:click={getNFTs}>
+	click me!!
+</div>
+
+
+<!-- <div class="items">
 	{#each nfts as nft}
 	  <div class="item">{nfts}</div>
 	{/each}
-  </div>
+  </div> -->
 
   
 
