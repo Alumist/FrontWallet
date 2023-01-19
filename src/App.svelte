@@ -1,15 +1,10 @@
-<script>
+<script lang='ts'>
 	import axios from "axios"
-	import { spring } from "svelte/motion";
 	let address = '';
-	let nfts = 0;
-
-	const fadeSpring = spring(1, { stiffness: 0.1, damping: 0.5 });
-  const transformSpring = spring(0, { stiffness: 0.2, damping: 0.1 });
-
-  const toggleFade = () => fadeSpring.update(val => (val ? 0 : 1));
-  const toggleTransform = () => transformSpring.update(val => (val ? 0 : 500));
-  const snapTransform = () => transformSpring.update(val => val, { hard: true });
+	let nfts = '';
+    let balance = 0;
+	let error = ``;
+	let submit = "submit";
 
 	async function getWalletBalance() {
 		balance = (await axios.get(`hitt://localhost: 3001/get_wallet_balance/${address}`)
@@ -17,23 +12,12 @@
 	}
 
 	async function getNFTs() {
-		nfts = (await axios.get(`LINK`)
+		nfts = (await axios.get(`http://localhost:3001/nfts_of_addy/${address}`)
 		).data.nfts
 	}
 </script>
 
 
-<div style="opacity: {$fadeSpring}">Little bit about me. I am Alumist and thats all folks. This is my <a href="http://twitter.com/alumist_" target="_blank">twitter.</a> 
-	
-</div>\
-
-
-<br />
-
-<div class="buttonFade"on:click={toggleFade}>Click Me!</div>
-
-
-<hr />
 
 
 <div class="container">
@@ -42,26 +26,41 @@
 	</div>
 
 <div class="button">
-	connect wallet</div>
+	<input
+	bind:value={address}
+	type="textbox"
+	placeholder="enter wallet address"
+	class="page-textbox" 
+>
+</div>
 
 <div class="text"> 
-	NFTs You have: NFTs
+	<input	
+	bind:value={getNFTs} 
+>
 	</div>
 </div>
 
 
+<input type="text" bind:value={address} />
+  
+  <div on:click={async() => {
+    getNFTs = (await axios.get(`${YOUR_BACKEND_URL}/get_wallet_balance/${address}`)).data;
+  }}>button text</div>
+  
+  <div>{balance.toFixed(2)} SOL</div>
+
+<input type="text" bind:value={address} />
+  
+  <div on:click={async() => {
+    balance = (await axios.get(`${YOUR_BACKEND_URL}/get_wallet_balance/${address}`)).data;
+  }}>button text</div>
+  
+  <div>{balance.toFixed(2)} SOL</div>
+  
+  
+
 <style>
-	.buttonFade {
-		background-color: aquamarine;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		font-size: 2em;
-		justify-content: center;
-		background-position: 1em;
-		padding: 0.1em 0.4em;
-		background-size: 0%;
-	}
 	.container {
 		height: 100%;
 		width: 100%;
@@ -70,25 +69,25 @@
 		align-items: center;
 		justify-content: center;
 	}
-	.textbox {
-		font-size: 1.2em;
-	}
 
 	.button {
-		background-color: black;
-		padding: 0.4em 0.8em;
-		color: white;
-		font-size: 1.2em;
-		margin: 1em 0;
-		cursor: pointer;
-		transition-duration: 0.3s;
-	}
-	.button:hover {
-		background-color: aqua;
-	}
+        background-color: rgb(46, 113, 113);
+        text-align: center;
+        padding: 0.3em;
+        max-width: 200px;
+        margin: 0 auto;
+    }
 
 	.text {
 		font-size: 1.4em;
 		font-weight: bold;
 	}
 </style>
+
+<script lang="ts">
+    const axios = require(`axios`);
+    let  = ``;
+    let balance = 0;
+  </script>
+  
+  
